@@ -34,4 +34,3 @@ int main() {
 
     return 0;
 }
-```[cite: 1]
