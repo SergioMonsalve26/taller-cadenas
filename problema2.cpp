@@ -46,9 +46,3 @@ int main() {
 }
 ```[cite: 1, 2]
 
-3. Guarda los cambios presionando **`Ctrl + S`**.
-4. Ve a la terminal y sube tus cambios a GitHub con estos tres comandos:
-   ```bash
-   git add .
-   git commit -m "Agregado el problema 2"
-   git push

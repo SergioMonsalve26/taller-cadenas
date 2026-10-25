@@ -20,12 +20,10 @@ int main() {
 
     string romano = "";
 
-    // Miles
     if (miles == 1) romano += "M";
     else if (miles == 2) romano += "MM";
     else if (miles == 3) romano += "MMM";
 
-    // Centenas
     if (centenas == 1) romano += "C";
     else if (centenas == 2) romano += "CC";
     else if (centenas == 3) romano += "CCC";
@@ -36,7 +34,6 @@ int main() {
     else if (centenas == 8) romano += "DCCC";
     else if (centenas == 9) romano += "CM";
 
-    // Decenas
     if (decenas == 1) romano += "X";
     else if (decenas == 2) romano += "XX";
     else if (decenas == 3) romano += "XXX";
@@ -47,7 +44,6 @@ int main() {
     else if (decenas == 8) romano += "LXXX";
     else if (decenas == 9) romano += "XC";
 
-    // Unidades
     if (unidades == 1) romano += "I";
     else if (unidades == 2) romano += "II";
     else if (unidades == 3) romano += "III";
@@ -63,10 +59,3 @@ int main() {
     return 0;
 }
 ```[cite: 2]
-
-3. Guarda los cambios con **`Ctrl + S`**.
-4. Ve a la terminal y sube tus cambios a GitHub:
-   ```bash
-   git add .
-   git commit -m "Agregado el problema 4"
-   git push

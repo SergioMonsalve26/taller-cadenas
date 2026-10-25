@@ -35,15 +35,3 @@ int main() {
     return 0;
 }
 ```[cite: 1]
-
-4. Guarda los cambios presionando las teclas `Ctrl + S` (o `Cmd + S` si estás en Mac).
-
----
-
-## Paso 5: Guardar el progreso localmente con Git
-
-Vuelve a la terminal que abrimos abajo y escribe estos dos comandos (presionando **Enter** después de cada uno):
-
-1. Para preparar el archivo:
-   ```bash
-   git add .
