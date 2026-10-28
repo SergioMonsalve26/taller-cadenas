@@ -1,51 +1,32 @@
 #include <iostream>
-#include <string>
-#include <cctype>
+#include <iomanip>
 
 using namespace std;
 
 int main() {
-    string texto;
-    cout << "Ingrese una cadena de texto: ";
-    getline(cin, texto);
+    int n;
+    cout << "Numero de filas (1 a 15): ";
+    cin >> n;
 
-    int vocales = 0;
-    int consonantes = 0;
-    int digitos = 0;
-    int espacios = 0;
-    int palabras = 0;
-    bool enPalabra = false;
-
-    for (int i = 0; i < texto.length(); i++) {
-        char c = tolower(texto[i]);
-
-        if (c == ' ' || c == '\t' || c == '\n') {
-            espacios++;
-            enPalabra = false;
-        } else {
-            if (!enPalabra) {
-                palabras++;
-                enPalabra = true;
-            }
-
-            if (isdigit(c)) {
-                digitos++;
-            } else if (isalpha(c)) {
-                if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
-                    vocales++;
-                } else {
-                    consonantes++;
-                }
-            }
-        }
+    if (n < 1 || n > 15) {
+        cout << "Numero fuera de rango." << endl;
+        return 0;
     }
 
-    cout << "--- Estadisticas del texto ---" << endl;
-    cout << "Palabras: " << palabras << endl;
-    cout << "Vocales: " << vocales << endl;
-    cout << "Consonantes: " << consonantes << endl;
-    cout << "Digitos: " << digitos << endl;
-    cout << "Espacios: " << espacios << endl;
+    for (int i = 0; i < n; i++) {
+        // Espacios de centrado para la fila actual
+        for (int s = 0; s < (n - 1 - i) * 2; s++) {
+            cout << " ";
+        }
+
+        long long coef = 1;
+        for (int k = 0; k <= i; k++) {
+            cout << setw(4) << coef;
+            // Cálculo del siguiente coeficiente usando la relación solicitada: C(n, k+1) = C(n, k) * (n - k) / (k + 1)
+            coef = coef * (i - k) / (k + 1);
+        }
+        cout << endl;
+    }
 
     return 0;
 }
