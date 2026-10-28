@@ -1,34 +1,48 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main() {
-    int n;
-    cout << "Ingrese un numero entero positivo mayor a 1: ";
-    cin >> n;
+    char opcion;
+    cout << "Cifrar (C) o descifrar (D): ";
+    cin >> opcion;
 
-    if (n <= 1) {
-        cout << "Numero invalido." << endl;
-        return 0;
+    long long k;
+    cout << "Desplazamiento: ";
+    cin >> k;
+
+    cin.ignore(); // Limpia el búfer del teclado antes de leer la cadena con getline
+
+    string mensaje;
+    cout << "Mensaje: ";
+    getline(cin, mensaje);
+
+    // Si se desea descifrar, el desplazamiento es inverso
+    if (opcion == 'D' || opcion == 'd') {
+        k = -k;
     }
 
-    cout << "Descomposicion en factores primos: ";
-    int divisor = 2;
-    bool primero = true;
+    long long shift = k % 26;
+    if (shift < 0) {
+        shift += 26;
+    }
 
-    while (n > 1) {
-        if (n % divisor == 0) {
-            if (!primero) {
-                cout << " * ";
-            }
-            cout << divisor;
-            n /= divisor;
-            primero = false;
+    string resultado = "";
+    for (int i = 0; i < mensaje.length(); i++) {
+        char c = mensaje[i];
+        if (c >= 'a' && c <= 'z') {
+            char nuevoChar = 'a' + (c - 'a' + shift) % 26;
+            resultado += nuevoChar;
+        } else if (c >= 'A' && c <= 'Z') {
+            char nuevoChar = 'A' + (c - 'A' + shift) % 26;
+            resultado += nuevoChar;
         } else {
-            divisor++;
+            resultado += c; // Caracteres especiales o espacios se copian sin cambios
         }
     }
-    cout << endl;
+
+    cout << "Resultado: " << resultado << endl;
 
     return 0;
 }
