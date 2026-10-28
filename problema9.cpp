@@ -1,33 +1,80 @@
 #include <iostream>
 #include <string>
+#include <cctype>
 
 using namespace std;
 
 int main() {
-    int n;
-    cout << "Ingrese un numero entero positivo: ";
-    cin >> n;
+    int opcion;
+    cout << "1. Comprimir\n2. Descomprimir\nOpcion: ";
+    cin >> opcion;
+    cin.ignore();
 
-    if (n < 0) {
-        cout << "Numero invalido." << endl;
-        return 0;
+    if (opcion == 1) {
+        string cadena;
+        cout << "Cadena: ";
+        getline(cin, cadena);
+
+        if (cadena.empty()) {
+            cout << "Comprimida: " << endl;
+            return 0;
+        }
+
+        string comprimida = "";
+        int i = 0;
+        while (i < cadena.length()) {
+            char c = cadena[i];
+            int count = 0;
+            while (i < cadena.length() && cadena[i] == c) {
+                count++;
+                i++;
+            }
+            comprimida += c + to_string(count);
+        }
+        cout << "Comprimida: " << comprimida << endl;
+
+    } else if (opcion == 2) {
+        string cadena;
+        cout << "Cadena: ";
+        getline(cin, cadena);
+
+        string descomprimida = "";
+        bool valido = true;
+        int i = 0;
+        int n = cadena.length();
+
+        while (i < n) {
+            if (!isalpha(cadena[i])) {
+                valido = false;
+                break;
+            }
+            char c = cadena[i];
+            i++;
+
+            if (i >= n || !isdigit(cadena[i])) {
+                valido = false;
+                break;
+            }
+
+            int num = 0;
+            while (i < n && isdigit(cadena[i])) {
+                num = num * 10 + (cadena[i] - '0');
+                i++;
+            }
+
+            for (int j = 0; j < num; j++) {
+                descomprimida += c;
+            }
+        }
+
+        if (!valido) {
+            cout << "Formato invalido." << endl;
+        } else {
+            cout << "Descomprimida: " << descomprimida << endl;
+        }
+    } else {
+        cout << "Opcion invalida." << endl;
     }
-
-    if (n == 0) {
-        cout << "Binario: 0" << endl;
-        return 0;
-    }
-
-    string binario = "";
-    int temp = n;
-
-    while (temp > 0) {
-        int residuo = temp % 2;
-        binario = to_string(residuo) + binario;
-        temp /= 2;
-    }
-
-    cout << "El numero " << n << " en binario es: " << binario << endl;
 
     return 0;
 }
