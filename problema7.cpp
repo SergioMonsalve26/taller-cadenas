@@ -12,13 +12,11 @@ int main() {
     cout << "Desplazamiento: ";
     cin >> k;
 
-    cin.ignore(); // Limpia el búfer del teclado antes de leer la cadena con getline
-
+    cin.ignore(); 
     string mensaje;
     cout << "Mensaje: ";
     getline(cin, mensaje);
 
-    // Si se desea descifrar, el desplazamiento es inverso
     if (opcion == 'D' || opcion == 'd') {
         k = -k;
     }
@@ -38,7 +36,7 @@ int main() {
             char nuevoChar = 'A' + (c - 'A' + shift) % 26;
             resultado += nuevoChar;
         } else {
-            resultado += c; // Caracteres especiales o espacios se copian sin cambios
+            resultado += c;
         }
     }
 
